@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","18611","Invalid Login Test - Should show error","","2026-09-17","passed","2026-09-17","","login.spec.js","",""
+"","16602","OrangeHRM Capstone - Login Test with POM and .env","","2026-09-17","passed","2026-09-17","","login.spec.js","",""

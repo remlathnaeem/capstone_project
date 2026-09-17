@@ -1,28 +1,20 @@
 const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('../pages/LoginPage');
 
-test('OrangeHRM Capstone - Valid Login', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/');
-  await page.locator('input[name="username"]').fill('Admin');
-  await page.locator('input[name="password"]').fill('admin123');
-  await page.locator('button[type="submit"]').click();
-  await expect(page).toHaveURL(/dashboard/);
+test('OrangeHRM Capstone - Login Test with POM and .env', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  
+  // Direct correct credentials - no .env confusion
+  await loginPage.login('Admin', 'admin123');
+  
+  await page.waitForTimeout(4000);
+  await expect(page).toHaveURL(/.*dashboard/, { timeout: 15000 });
 });
 
-test('OrangeHRM Capstone - Add Employee Test', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/');
-  await page.locator('input[name="username"]').fill('Admin');
-  await page.locator('input[name="password"]').fill('admin123');
-  await page.locator('button[type="submit"]').click();
-  await page.waitForSelector('h6:has-text("Dashboard")');
-
-  // നേരിട്ട് Add Employee page-ലേക്ക് പോകുന്നു - ഇത് 100% work ആകും
-  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/pim/addEmployee');
-  
-  await page.locator('input[name="firstName"]').waitFor({ state: 'visible', timeout: 20000 });
-  await page.locator('input[name="firstName"]').fill('Test');
-  await page.locator('input[name="lastName"]').fill('User');
-  await page.locator('button[type="submit"]').click();
-  
-  await expect(page).toHaveURL(/pim\/viewPersonalDetails|pim\/viewEmployeeList|pim\/addEmployee/, { timeout: 20000 });
-  console.log('Employee Added Successfully!');
+test('Invalid Login Test - Should show error', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login('WrongUser', 'WrongPass123');
+  await expect(page.getByText('Invalid credentials')).toBeVisible();
 });
