@@ -55,4 +55,16 @@ await page.waitForTimeout(3000);
     // await page.locator("(//input[contains(@class,'oxd-input')])[2]").fill("Meppayur, Kerala");
     // await page.locator("(//button[@type='submit'])[1]").click();
   });
+  test('Scenario 3 - Add Employee', async ({ page }) => {
+  await page.locator("//span[text()='PIM']").click();
+  await page.waitForTimeout(2000);
+  await page.locator("//button[normalize-space()='Add']").click();
+  await page.waitForTimeout(2000);
+  await page.getByPlaceholder('First Name').fill('Remlath');
+  await page.getByPlaceholder('Last Name').fill('Naeem');
+  await page.locator("//button[@type='submit']").click();
+  await page.waitForTimeout(3000);
+  await expect(page.locator("//h6[contains(text(),'Personal Details')]")).toBeVisible();
+  console.log("✅ Employee Added Successfully");
+});
 });
