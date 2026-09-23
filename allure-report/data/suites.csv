@@ -1,5 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","22677","Scenario 1 - Buzz Post Creation","","2026-09-22","passed","2026-09-22","OrangeHRM Capstone - Full Automation","orangeHRM.spec.js","",""
-"","14906","Invalid Login Test - Should show error","","2026-09-22","passed","2026-09-22","","login.spec.js","",""
-"","29519","Scenario 2 - Leave Apply / My Info","","2026-09-22","passed","2026-09-22","OrangeHRM Capstone - Full Automation","orangeHRM.spec.js","",""
-"","19247","OrangeHRM Capstone - Login Test with POM and .env","","2026-09-22","passed","2026-09-22","","login.spec.js","",""
